@@ -1,0 +1,16 @@
+---
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties: 
+      AvailabilityZone: YOUR_AZ #edit
+      IamInstanceProfile: YOUR_INS_PRO #edit
+      ImageId: ami-0ce792959cf41c394 #edit
+      InstanceType: t2.micro
+      KeyName: YOUR_KEY_PAIR #edit
+      SecurityGroupIds: 
+        - sg-xxx #edit
+      SubnetId: subnet-xxx #edit
+      Tags: [
+            {"Key" : "Name", "Value" : "EC2_NAME"} #edit
+      ]
