@@ -1,0 +1,32 @@
+---
+Parameters:
+  SecurityGroupDescription:
+    Description: Security Group Description
+    Type: String
+
+Resources:
+  kelvinsgcfn:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Public-SG
+      GroupName: Public-SG
+      SecurityGroupIngress: 
+        -   CidrIp: 0.0.0.0/0
+            FromPort: 22
+            IpProtocol: tcp
+            ToPort: 22
+            Description: Enable SSH access via port 22
+        -   CidrIp: 0.0.0.0/0
+            FromPort: 80
+            IpProtocol: tcp
+            ToPort: 80
+            Description: Enable HTTP access via port 80
+        -   CidrIp: 0.0.0.0/0
+            FromPort: 443
+            IpProtocol: tcp
+            ToPort: 443
+            Description: Enable HTTPS access via port 443
+      Tags: [
+            {"Key": "Name", "Value": "Public-SG"}
+      ]
+      VpcId: vpc-xxx #edit
