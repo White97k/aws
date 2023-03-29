@@ -11,6 +11,14 @@ Resources:
       SecurityGroupIds: 
         - sg-xxx #edit
       SubnetId: subnet-xxx #edit
+      UserData: 
+        Fn::Base64: |
+          #!/bin/bash -xe
+          yum update -y
+          yum install -y httpd #edit
+          systemctl start httpd #edit
+          systemctl enable httpd #edit
+          echo "Hello World from CloudFormation user data" > /var/www/html/index.html #edit
       Tags: [
             {"Key" : "Name", "Value" : "EC2_NAME"} #edit
       ]
