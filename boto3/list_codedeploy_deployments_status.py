@@ -36,4 +36,4 @@ response = client.list_deployments(
 for deployment_id in response['deployments']:
     deployment_info = client.get_deployment(deploymentId=deployment_id)
     deployment_status = deployment_info['deploymentInfo']['status']
-    print('Deployment ID:' +deployment_id, 'Status:  '+deployment_status)
+    print('Deployment ID: ' + deployment_id, 'Status:  ' + deployment_status)
