@@ -14,16 +14,25 @@ ec2_client = boto3.client('ec2', region_name=region)
 # Define filters
 filters = [
     {'Name': 'tag:Name', 'Values': [tag_value]},
-  #  {'Name': 'tag:Prod_env', 'Values': ['uat01']}
 ]
 
 # Describe instances
 response = ec2_client.describe_instances(Filters=filters)
 
-# Extract Private IP addresses
-private_ip_addresses = []
+# Extract instance ID, private IP addresses, and tags
+instances_info = []
 for reservation in response['Reservations']:
     for instance in reservation['Instances']:
-        private_ip_addresses.append(instance['PrivateIpAddress'])
+        instance_id = instance['InstanceId']
+        private_ip_address = instance['PrivateIpAddress']
+        tags = instance.get('Tags', [])
+        name_tag = next((tag['Value'] for tag in tags if tag['Key'] == 'Name'), None)
+        instance_info = {'InstanceId': instance_id, 'PrivateIpAddress': private_ip_address, 'Name': name_tag}
+        instances_info.append(instance_info)
 
-print(private_ip_addresses)
+# Print instances information
+for instance_info in instances_info:
+    print("Instance ID:", instance_info['InstanceId'])
+    print("Private IP Address:", instance_info['PrivateIpAddress'])
+    print("Name Tag:", instance_info['Name'])
+    print(' ')
