@@ -34,5 +34,5 @@ for reservation in response['Reservations']:
 for instance_info in instances_info:
     print("Instance ID:", instance_info['InstanceId'])
     print("Private IP Address:", instance_info['PrivateIpAddress'])
-    print("Name Tag:", instance_info['Name'])
+    print("Tag:", instance_info['Name'])
     print(' ')
