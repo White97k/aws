@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Define the tag value as a variable
+read -p 'input the service: ' Service
+Env="aws4"
+Region="ap-southeast-1"
+
+# Run the AWS CLI command using the variable
+aws ec2 describe-instances \
+    --query 'Reservations[].Instances[].PrivateIpAddress' \
+    --filters Name=tag:Name,Values="$Service" \
+              Name=tag:Prod_env,Values="$Env" \
+    --region $Region
