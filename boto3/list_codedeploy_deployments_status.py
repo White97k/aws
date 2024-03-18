@@ -56,4 +56,4 @@ while True:
         print('All deployments have reached a terminal state.')
         break
 
-    time.sleep(3)  # Sleep for 30 seconds before accessing deployments again
+    time.sleep(30)  # Sleep for 30 seconds before accessing deployments again
