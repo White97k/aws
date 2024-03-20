@@ -50,8 +50,8 @@ def describe_instances(instance_ids, region_name):
 
 if __name__ == "__main__":
     print('Ensure your AWS profile is authorised permission to perform this action')
-    print("Warn, your input must be have '', exp: 'uat01-bi-task'")
-    auto_scaling_group_name = input('Input your ASG:')
+    print("\n Warn, your input must be used FULL NAME of asg \n ")
+    auto_scaling_group_name = input('Input your ASG: ')
     region_name = 'ap-southeast-1'
 
     # Get instance IDs from the specified Auto Scaling Group
@@ -61,7 +61,9 @@ if __name__ == "__main__":
     instances_info = describe_instances(instance_ids, region_name)
 
     # Print instance information
+    print('')
     print("Instances in Auto Scaling Group:", auto_scaling_group_name)
+    print('\n')
     for instance_info in instances_info:
         print("Instance ID:", instance_info['InstanceId'])
         print("Instance Type:", instance_info['InstanceType'])
